@@ -30,10 +30,6 @@
 #import "ACTcpStreamClient.h"
 
 @interface ACTcpStreamClient ()
-{
-    CFWriteStreamRef write;
-    CFReadStreamRef read;
-}
 
 @property (nonatomic, strong) NSString *hostname;
 @property (nonatomic) NSInteger port;
@@ -49,100 +45,46 @@
     {
         _hostname = hostname;
         _port = port;
-        
-        write = NULL;
-        read = NULL;
     }
     return self;
 }
 
-+ (instancetype) tcpStreamWithHostname:(NSString *)hostname port:(int)port
-{
-    return [[self alloc] initWithHostname:hostname port:port];
-}
-
-- (void)dealloc
-{
-    // we need to disconnect to free some system resources
-    // and to free our used memory
-    [self disconnect];
-}
-
-#pragma mark - getter / setter
-
-- (BOOL) isConnected
-{
-    BOOL isConnected = NO;
-    
-    // check if we have streams
-    if (self.readStream && self.writeStream)
-    {
-        // check if both streams are open
-        isConnected = (self.readStream.streamStatus == NSStreamStatusOpen &&
-                       self.writeStream.streamStatus == NSStreamStatusOpen);
-    }
-    
-    return isConnected;
-}
-
 #pragma mark - public
 
-- (ACTcpStreamClientConnect) connect
+- (ACTcpStreamConnection *) connect
 {
-    // if we are connected - we just have to disconnect first
-    // free resources etc.
-    [self disconnect];
-    
+    CFWriteStreamRef write;
+    CFReadStreamRef read;
     UInt32 port = (UInt32)self.port;
     
     CFStreamCreatePairWithSocketToHost(kCFAllocatorDefault, (__bridge CFStringRef)self.hostname, port, &read, &write);
     
     if (read == NULL || write == NULL)
     {
-        [self freeRead];
-        [self freeWrite];
+        if (read != NULL)
+            CFBridgingRelease(read);
         
-        return ACTcpStreamClientConnectFailed;
+        if (write != NULL)
+            CFBridgingRelease(write);
+        
+        return nil;
     }
     
-    Boolean success = CFWriteStreamOpen(write);
-    _writeStream = (__bridge NSOutputStream*)write;
+    Boolean successRead = CFReadStreamOpen(read);
+    Boolean successWrite = CFWriteStreamOpen(write);
     
-    success = CFReadStreamOpen(read);
-    _readStream = (__bridge NSInputStream*)read;
-    
-    return ACTcpStreamClientConnectSuccess;
-}
-
-- (void) disconnect
-{
-    // close reading end
-    [self.readStream close];
-    _readStream = nil;
-    [self freeRead];
-    
-    // close writing end
-    [self.writeStream close];
-    _writeStream = nil;
-    [self freeWrite];
-}
-
-#pragma mark - private
-
-- (void)freeRead
-{
-    if (read != NULL) {
+    if (!successRead || !successWrite)
+    {
         CFBridgingRelease(read);
-        read = NULL;
-    }
-}
-
-- (void)freeWrite
-{
-    if (write != NULL) {
         CFBridgingRelease(write);
-        write = NULL;
+        return nil;
     }
+    
+    ACTcpStreamConnection *connection;
+    connection = [[ACTcpStreamConnection alloc] initWithWriteStream:write
+                                                         readStream:read];
+    
+    return connection;
 }
 
 @end

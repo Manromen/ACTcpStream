@@ -10,6 +10,15 @@
 		F81C94AD1AF0B20E008987F6 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = F81C94AC1AF0B20E008987F6 /* main.m */; };
 		F81C94CC1AF0DE91008987F6 /* ACTcpStreamClient.m in Sources */ = {isa = PBXBuildFile; fileRef = F874CA981AF0393300B61687 /* ACTcpStreamClient.m */; };
 		F81C94CD1AF0DE94008987F6 /* ACTcpStreamClient.m in Sources */ = {isa = PBXBuildFile; fileRef = F874CA981AF0393300B61687 /* ACTcpStreamClient.m */; };
+		F81C94D01AF10963008987F6 /* ACTcpStreamServer.h in Headers */ = {isa = PBXBuildFile; fileRef = F81C94CE1AF10963008987F6 /* ACTcpStreamServer.h */; };
+		F81C94D11AF10963008987F6 /* ACTcpStreamServer.m in Sources */ = {isa = PBXBuildFile; fileRef = F81C94CF1AF10963008987F6 /* ACTcpStreamServer.m */; };
+		F81C94D21AF10963008987F6 /* ACTcpStreamServer.m in Sources */ = {isa = PBXBuildFile; fileRef = F81C94CF1AF10963008987F6 /* ACTcpStreamServer.m */; };
+		F81C94D31AF10963008987F6 /* ACTcpStreamServer.m in Sources */ = {isa = PBXBuildFile; fileRef = F81C94CF1AF10963008987F6 /* ACTcpStreamServer.m */; };
+		F81C94D61AF10DED008987F6 /* ACTcpStreamConnection.h in Headers */ = {isa = PBXBuildFile; fileRef = F81C94D41AF10DED008987F6 /* ACTcpStreamConnection.h */; };
+		F81C94D71AF10DED008987F6 /* ACTcpStreamConnection.m in Sources */ = {isa = PBXBuildFile; fileRef = F81C94D51AF10DED008987F6 /* ACTcpStreamConnection.m */; };
+		F81C94D81AF10DED008987F6 /* ACTcpStreamConnection.m in Sources */ = {isa = PBXBuildFile; fileRef = F81C94D51AF10DED008987F6 /* ACTcpStreamConnection.m */; };
+		F81C94D91AF10DED008987F6 /* ACTcpStreamConnection.m in Sources */ = {isa = PBXBuildFile; fileRef = F81C94D51AF10DED008987F6 /* ACTcpStreamConnection.m */; };
+		F81C94DD1AF13F05008987F6 /* Example.m in Sources */ = {isa = PBXBuildFile; fileRef = F81C94DC1AF13F05008987F6 /* Example.m */; };
 		F874CA971AF0393300B61687 /* ACTcpStreamClient.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = F874CA961AF0393300B61687 /* ACTcpStreamClient.h */; };
 		F874CA991AF0393300B61687 /* ACTcpStreamClient.m in Sources */ = {isa = PBXBuildFile; fileRef = F874CA981AF0393300B61687 /* ACTcpStreamClient.m */; };
 /* End PBXBuildFile section */
@@ -40,6 +49,13 @@
 		F81C94AA1AF0B20E008987F6 /* Example */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = Example; sourceTree = BUILT_PRODUCTS_DIR; };
 		F81C94AC1AF0B20E008987F6 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		F81C94B51AF0C15E008987F6 /* libACTcpStream.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libACTcpStream.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		F81C94CE1AF10963008987F6 /* ACTcpStreamServer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ACTcpStreamServer.h; sourceTree = "<group>"; };
+		F81C94CF1AF10963008987F6 /* ACTcpStreamServer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ACTcpStreamServer.m; sourceTree = "<group>"; };
+		F81C94D41AF10DED008987F6 /* ACTcpStreamConnection.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ACTcpStreamConnection.h; sourceTree = "<group>"; };
+		F81C94D51AF10DED008987F6 /* ACTcpStreamConnection.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ACTcpStreamConnection.m; sourceTree = "<group>"; };
+		F81C94DA1AF1387A008987F6 /* ACTcpStream.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ACTcpStream.h; sourceTree = "<group>"; };
+		F81C94DB1AF13F05008987F6 /* Example.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Example.h; sourceTree = "<group>"; };
+		F81C94DC1AF13F05008987F6 /* Example.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Example.m; sourceTree = "<group>"; };
 		F874CA931AF0393300B61687 /* libACTcpStream.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libACTcpStream.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		F874CA961AF0393300B61687 /* ACTcpStreamClient.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ACTcpStreamClient.h; sourceTree = "<group>"; };
 		F874CA981AF0393300B61687 /* ACTcpStreamClient.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ACTcpStreamClient.m; sourceTree = "<group>"; };
@@ -73,6 +89,8 @@
 		F81C94AB1AF0B20E008987F6 /* Example */ = {
 			isa = PBXGroup;
 			children = (
+				F81C94DB1AF13F05008987F6 /* Example.h */,
+				F81C94DC1AF13F05008987F6 /* Example.m */,
 				F81C94AC1AF0B20E008987F6 /* main.m */,
 			);
 			path = Example;
@@ -100,8 +118,13 @@
 		F874CA951AF0393300B61687 /* ACTcpStream */ = {
 			isa = PBXGroup;
 			children = (
+				F81C94DA1AF1387A008987F6 /* ACTcpStream.h */,
 				F874CA961AF0393300B61687 /* ACTcpStreamClient.h */,
 				F874CA981AF0393300B61687 /* ACTcpStreamClient.m */,
+				F81C94D41AF10DED008987F6 /* ACTcpStreamConnection.h */,
+				F81C94D51AF10DED008987F6 /* ACTcpStreamConnection.m */,
+				F81C94CE1AF10963008987F6 /* ACTcpStreamServer.h */,
+				F81C94CF1AF10963008987F6 /* ACTcpStreamServer.m */,
 			);
 			path = ACTcpStream;
 			sourceTree = "<group>";
@@ -113,6 +136,8 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F81C94D61AF10DED008987F6 /* ACTcpStreamConnection.h in Headers */,
+				F81C94D01AF10963008987F6 /* ACTcpStreamServer.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -214,6 +239,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F81C94D31AF10963008987F6 /* ACTcpStreamServer.m in Sources */,
+				F81C94DD1AF13F05008987F6 /* Example.m in Sources */,
+				F81C94D91AF10DED008987F6 /* ACTcpStreamConnection.m in Sources */,
 				F81C94AD1AF0B20E008987F6 /* main.m in Sources */,
 				F81C94CD1AF0DE94008987F6 /* ACTcpStreamClient.m in Sources */,
 			);
@@ -223,7 +251,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F81C94D21AF10963008987F6 /* ACTcpStreamServer.m in Sources */,
 				F81C94CC1AF0DE91008987F6 /* ACTcpStreamClient.m in Sources */,
+				F81C94D81AF10DED008987F6 /* ACTcpStreamConnection.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -231,7 +261,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F81C94D11AF10963008987F6 /* ACTcpStreamServer.m in Sources */,
 				F874CA991AF0393300B61687 /* ACTcpStreamClient.m in Sources */,
+				F81C94D71AF10DED008987F6 /* ACTcpStreamConnection.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

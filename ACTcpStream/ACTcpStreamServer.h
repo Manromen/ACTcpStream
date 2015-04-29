@@ -1,5 +1,5 @@
 /*
- ACTcpStreamClient.h
+ ACTcpStreamServer.h
  
  Created by Ralph-Gordon Paul on 29.04.15.
  -------------------------------------------------------------------------------
@@ -31,15 +31,23 @@
 
 #import "ACTcpStreamConnection.h"
 
-@interface ACTcpStreamClient : NSObject
+@class ACTcpStreamServer;
 
-- (instancetype) initWithHostname:(NSString *)hostname port:(int)port;
+@protocol ACTcpStreamServerDelegate <NSObject>
 
-/*!
- @brief Connects to the server and creates a ACTcpStreamConnection instance for 
-        sending / receiving data with the server.
- @return ACTcpStreamConnection instance on success or nil on failure.
- */
-- (ACTcpStreamConnection *) connect;
+- (void)tcpStreamServer:(ACTcpStreamServer *)server
+     receivedConnection:(ACTcpStreamConnection *)connection;
+
+@end
+
+@interface ACTcpStreamServer : NSObject
+
+@property (nonatomic, readonly) int listeningPort;
+
+@property (nonatomic, weak) id <ACTcpStreamServerDelegate, NSObject> delegate;
+
+- (instancetype) initWithListeningPort:(int)port;
+
+- (void)startListening;
 
 @end

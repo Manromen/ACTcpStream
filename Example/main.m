@@ -30,81 +30,35 @@
 
 #import <Foundation/Foundation.h>
 #import <getopt.h>
-#include <netinet/in.h>
 
-#import "ACTcpStreamClient.h"
+#import "Example.h"
 
+// arguments for getopt
 BOOL isServer = NO;
 BOOL isClient = NO;
 NSString *hostname = nil;
 int port = 0;
 
-int process_args(int argc, const char** argv);
-void print_usage(const char *appname);
-void client_processing(ACTcpStreamClient *client);
-void server_processing(int port);
-
-int main(int argc, const char ** argv)
-{
-    @autoreleasepool
-    {
-        if (process_args(argc, argv) == 0)
-        {
-            // check if all required parameters are given
-            if (// we need to be server or client
-                (isServer && isClient) ||
-                // if we are a client, we require the hostname to connect to
-                (isClient && !hostname) ||
-                // we need a port to connect or listen to
-                port == 0)
-            {
-                print_usage(argv[0]);
-                return 0;
-            }
-            
-            NSLog(@"We are %@", isClient ? @"Client" : @"Server");
-            if (isClient)
-                NSLog(@"hostname: %@", hostname);
-            NSLog(@"port: %li", (long)port);
-            
-            if (isClient)
-            {
-                ACTcpStreamClient *client = [ACTcpStreamClient tcpStreamWithHostname:hostname port:port];
-                client_processing(client);
-            }
-            else if (isServer)
-            {
-                server_processing(port);
-            }
-        }
-        else
-        {
-            print_usage(argv[0]);
-            return 0;
-        }
-        
-    }
-    return 0;
-}
-
+//! prints the usage information to stdout
 void print_usage(const char *appname)
 {
     NSString *usage = [NSString stringWithFormat:@"\n"
-    
-    "Usage:\n"
-    "%s (--server --port <port> | --client --hostname <host> --port <port>)\n\n"
-    
-    "Options:\n"
-    "-s --server     Run in server mode.\n"
-    "-c --client     Run in client mode.\n"
-    "-p --port       Port to connect to if running as client, port to bind to "
-                     "if running as server.\n"
-    "-h --hostname   The hostname to connect to.\n\n"
-                       , appname];
+                       
+   "Usage:\n"
+   "%s (--server --port <port> | --client --hostname <host> --port <port>)\n\n"
+   
+   "Options:\n"
+   "-s --server     Run in server mode.\n"
+   "-c --client     Run in client mode.\n"
+   "-p --port       Port to connect to if running as client, port to bind to "
+   "if running as server.\n"
+   "-h --hostname   The hostname to connect to.\n\n"
+   , appname];
     
     fprintf(stdout, "%s", [usage cStringUsingEncoding:NSASCIIStringEncoding]);
 }
 
+//! reads the command line parameters
 int process_args(int argc, const char** argv)
 {
     static struct option longopts[] =
@@ -119,7 +73,8 @@ int process_args(int argc, const char** argv)
     int c;
     
     // parse all arguments with getopt_long
-    while ((c = getopt_long (argc, (char * const *)argv, "csh:p:", longopts, NULL)) != -1)
+    while ((c = getopt_long (argc, (char * const *)argv, "csh:p:", longopts,
+                             NULL)) != -1)
     {
         switch (c)
         {
@@ -130,11 +85,14 @@ int process_args(int argc, const char** argv)
                 isServer = YES;
                 break;
             case 'h':
-                hostname = [NSString stringWithCString:optarg encoding:NSASCIIStringEncoding];
+                hostname = [NSString stringWithCString:optarg
+                                              encoding:NSASCIIStringEncoding];
                 break;
             case 'p':
             {
-                NSString *p = [NSString stringWithCString:optarg encoding:NSASCIIStringEncoding];
+                NSString *p;
+                p = [NSString stringWithCString:optarg
+                                       encoding:NSASCIIStringEncoding];
                 
                 port = p.intValue;
                 
@@ -159,74 +117,44 @@ int process_args(int argc, const char** argv)
     return 0;
 }
 
-void client_processing(ACTcpStreamClient *client)
+int main(int argc, const char ** argv)
 {
-    ACTcpStreamClientConnect ret = [client connect];
-    
-    if (ret == ACTcpStreamClientConnectSuccess)
-        NSLog(@"sucessfully connected");
-    
-    if (!client.isConnected)
+    @autoreleasepool
     {
-        NSLog(@"not connected!!!");
-    }
-    
-    int len = 1024;
-    uint8_t * buffer = (uint8_t *)malloc(sizeof(uint8_t) * len);
-    bzero(buffer, len);
-    
-    [client.readStream read:buffer maxLength:len];
-    
-    fprintf(stdout, "read: %s", buffer);
-    free(buffer);
-}
-
-void server_processing(int port)
-{
-    struct sockaddr_in srv;
-    int connectSocket; // connect socket
-    int dataSocket; // data socket
-    int opt = 1; // socket options
-    
-    int ret = 0;
-    
-    // init struct
-    bzero(&srv, sizeof(srv)); // fill struct with zeros
-    srv.sin_family = AF_INET;
-    srv.sin_addr.s_addr = INADDR_ANY;
-    srv.sin_port = htons(port);
-    
-    // init connect socket
-    connectSocket = socket(AF_INET, SOCK_STREAM, 0);
-    setsockopt(connectSocket, SOL_SOCKET, SO_REUSEADDR, &opt, sizeof(int));
-    ret = bind(connectSocket, (struct sockaddr *)&srv, sizeof(srv));
-    
-    if (ret != 0) {
-        NSLog(@"Error binding port");
-        abort();
-    }
-    
-    ret = listen(connectSocket, 20);
-    
-    if (ret != 0) {
-        NSLog(@"Error listening on socket");
-        abort();
-    }
-    
-    printf("server ready for incomming connections\n");
-    
-    while (true) {
-        struct sockaddr_in data;
-        unsigned int size;
-        
-        // wait for incomming connection
-        dataSocket = accept(connectSocket, (struct sockaddr *)&data, &size);
-        
-        if (dataSocket > 0) { // < 0 ==> Error
+        if (process_args(argc, argv) == 0)
+        {
+            // check if all required parameters are given
+            if (// we need to be server or client
+                (isServer && isClient) ||
+                // if we are a client, we require the hostname to connect to
+                (isClient && !hostname) ||
+                // we need a port to connect or listen to
+                port == 0)
+            {
+                print_usage(argv[0]);
+                return 0;
+            }
             
-            NSLog(@"accepted incomming connection");
-        } else {
-            NSLog(@"Error accepting incomming connection");
+            Example *example;
+            
+            if (isClient)
+            {
+                example = [[Example alloc] initClientWithHostname:hostname
+                                                             port:port];
+            }
+            else if (isServer)
+            {
+                example = [[Example alloc] initServerWithPort:port];
+            }
+            
+            [example run];
         }
+        else
+        {
+            print_usage(argv[0]);
+            return 0;
+        }
+        
     }
+    return 0;
 }

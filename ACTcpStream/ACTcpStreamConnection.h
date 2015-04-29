@@ -1,5 +1,5 @@
 /*
- ACTcpStreamClient.h
+ ACTcpStreamConnection.h
  
  Created by Ralph-Gordon Paul on 29.04.15.
  -------------------------------------------------------------------------------
@@ -29,17 +29,26 @@
 
 #import <Foundation/Foundation.h>
 
-#import "ACTcpStreamConnection.h"
+@interface ACTcpStreamConnection : NSObject
 
-@interface ACTcpStreamClient : NSObject
+//! Can be used to receive data
+@property (nonatomic, strong, readonly) NSInputStream *readStream;
+//! Can be used to send data
+@property (nonatomic, strong, readonly) NSOutputStream *writeStream;
 
-- (instancetype) initWithHostname:(NSString *)hostname port:(int)port;
+/*! Checks if the connection is still usable. If this value is NO, the 
+    connection cannot be used anymore and should be thrown away. */
+@property (nonatomic, readonly) BOOL isConnected;
 
-/*!
- @brief Connects to the server and creates a ACTcpStreamConnection instance for 
-        sending / receiving data with the server.
- @return ACTcpStreamConnection instance on success or nil on failure.
- */
-- (ACTcpStreamConnection *) connect;
+//! Creates an instance using an established socket.
+- (instancetype) initWithSocket:(int)socket;
+
+//! Creates an instances using opened read ans write streams.
+- (instancetype) initWithWriteStream:(CFWriteStreamRef)write
+                          readStream:(CFReadStreamRef)read;
+
+/*! Terminates the connection. After this is executed, the instance isn't
+    usable anymore and can be thrown away. */
+- (void) disconnect;
 
 @end
