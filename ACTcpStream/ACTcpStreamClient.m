@@ -38,7 +38,7 @@
 
 @implementation ACTcpStreamClient
 
-- (instancetype) initWithHostname:(NSString *)hostname port:(int)port
+- (instancetype)initWithHostname:(NSString *)hostname port:(int)port
 {
     self = [super init];
     if (self)
@@ -51,7 +51,7 @@
 
 #pragma mark - public
 
-- (ACTcpStreamConnection *) connect
+- (ACTcpStreamConnection *)connect
 {
     CFWriteStreamRef write;
     CFReadStreamRef read;

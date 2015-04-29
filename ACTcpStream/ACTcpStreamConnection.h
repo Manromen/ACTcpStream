@@ -49,6 +49,6 @@
 
 /*! Terminates the connection. After this is executed, the instance isn't
     usable anymore and can be thrown away. */
-- (void) disconnect;
+- (void)disconnect;
 
 @end

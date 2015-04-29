@@ -33,13 +33,13 @@
 
 @interface ACTcpStreamClient : NSObject
 
-- (instancetype) initWithHostname:(NSString *)hostname port:(int)port;
+- (instancetype)initWithHostname:(NSString *)hostname port:(int)port;
 
 /*!
  @brief Connects to the server and creates a ACTcpStreamConnection instance for 
         sending / receiving data with the server.
  @return ACTcpStreamConnection instance on success or nil on failure.
  */
-- (ACTcpStreamConnection *) connect;
+- (ACTcpStreamConnection *)connect;
 
 @end

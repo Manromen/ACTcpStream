@@ -28,6 +28,7 @@
  */
 
 #import "ACTcpStreamServer.h"
+#import "ACTcpStream.h"
 
 #include <netinet/in.h>
 
@@ -43,9 +44,9 @@
     return self;
 }
 
-- (void)startListening
+- (ACTcpStreamServerListening)startListening
 {
-    struct sockaddr_in srv;
+    struct sockaddr_in srv; // struct for socket creation
     __block int listeningSocket; // connect socket
     int opt = 1; // socket options
     
@@ -59,22 +60,39 @@
     
     // init connect socket
     listeningSocket = socket(AF_INET, SOCK_STREAM, 0);
-    setsockopt(listeningSocket, SOL_SOCKET, SO_REUSEADDR, &opt, sizeof(int));
+    
+    if (listeningSocket < 0) {
+        if ([ACTcpStream defaultTcpStream].logLevel >= ACTcpStreamLogLevelError)
+            NSLog(@"Error creating listening socket: %s", strerror(errno));
+        return ACTcpStreamServerListeningErrorSocket;
+    }
+    
+    ret = setsockopt(listeningSocket, SOL_SOCKET, SO_REUSEADDR, &opt, sizeof(int));
+    
+    if (ret < 0) {
+        if ([ACTcpStream defaultTcpStream].logLevel >= ACTcpStreamLogLevelError)
+            NSLog(@"Error setting socket options: %s", strerror(errno));
+        return ACTcpStreamServerListeningErrorSocket;
+    }
+    
     ret = bind(listeningSocket, (struct sockaddr *)&srv, sizeof(srv));
     
-    if (ret != 0) {
-        NSLog(@"Error binding port");
-        abort();
+    if (ret < 0) {
+        if ([ACTcpStream defaultTcpStream].logLevel >= ACTcpStreamLogLevelError)
+            NSLog(@"Error binding socket: %s", strerror(errno));
+        return ACTcpStreamServerListeningErrorBind;
     }
     
     ret = listen(listeningSocket, 20);
     
-    if (ret != 0) {
-        NSLog(@"Error listening on socket");
-        abort();
+    if (ret < 0) {
+        if ([ACTcpStream defaultTcpStream].logLevel >= ACTcpStreamLogLevelError)
+            NSLog(@"Error listening on socket: %s", strerror(errno));
+        return ACTcpStreamServerListeningErrorListen;
     }
     
-    printf("server ready for incomming connections\n");
+    if ([ACTcpStream defaultTcpStream].logLevel >= ACTcpStreamLogLevelDebug)
+        NSLog(@"server ready for incomming connections");
     
     dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
         
@@ -85,9 +103,10 @@
             // wait for incomming connection
             int clientSocket = accept(listeningSocket, (struct sockaddr *)&data, &size);
             
-            if (clientSocket > 0) { // < 0 ==> Error
+            if (clientSocket >= 0) { // < 0 ==> Error
                 
-                NSLog(@"accepted incomming connection");
+                if ([ACTcpStream defaultTcpStream].logLevel >= ACTcpStreamLogLevelDebug)
+                    NSLog(@"accepted incomming connection");
                 
                 dispatch_async(dispatch_get_main_queue(), ^{
                     
@@ -100,11 +119,13 @@
                     }
                 });
                 
-            } else {
-                NSLog(@"Error accepting incomming connection");
+            } else if ([ACTcpStream defaultTcpStream].logLevel >= ACTcpStreamLogLevelError) {
+                NSLog(@"Error accepting incomming connection: %s", strerror(errno));
             }
         }
     });
+    
+    return ACTcpStreamServerListeningSuccess;
 }
 
 @end

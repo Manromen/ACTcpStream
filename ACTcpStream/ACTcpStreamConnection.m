@@ -57,11 +57,19 @@
             CFReadStreamSetProperty(_read, kCFStreamPropertyShouldCloseNativeSocket, kCFBooleanTrue);
             CFWriteStreamSetProperty(_write, kCFStreamPropertyShouldCloseNativeSocket, kCFBooleanTrue);
             
-            Boolean success = CFReadStreamOpen(_read);
-            success = CFWriteStreamOpen(_write);
+            Boolean successRead = CFReadStreamOpen(_read);
+            Boolean successWrite = CFWriteStreamOpen(_write);
             
-            _readStream = (__bridge NSInputStream*)_read;
-            _writeStream = (__bridge NSOutputStream*)_write;
+            if (!successRead || !successWrite)
+            {
+                CFBridgingRelease(_read);
+                CFBridgingRelease(_write);
+            }
+            else
+            {
+                _readStream = (__bridge NSInputStream*)_read;
+                _writeStream = (__bridge NSOutputStream*)_write;
+            }
         }
     }
     return self;
@@ -91,7 +99,7 @@
 
 #pragma mark - getter / setter
 
-- (BOOL) isConnected
+- (BOOL)isConnected
 {
     BOOL isConnected = NO;
     
@@ -115,7 +123,7 @@
 
 #pragma mark - public
 
-- (void) disconnect
+- (void)disconnect
 {
     // close reading end
     [self.readStream close];

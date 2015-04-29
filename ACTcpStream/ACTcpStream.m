@@ -1,5 +1,5 @@
 /*
- ACTcpStreamServer.h
+ ACTcpStream.m
  
  Created by Ralph-Gordon Paul on 29.04.15.
  -------------------------------------------------------------------------------
@@ -27,38 +27,34 @@
  -------------------------------------------------------------------------------
  */
 
-#import <Foundation/Foundation.h>
+#import "ACTcpStream.h"
 
-#import "ACTcpStreamConnection.h"
+@implementation ACTcpStream
 
-typedef enum : NSUInteger {
-    ACTcpStreamServerListeningSuccess = 0,
-    ACTcpStreamServerListeningErrorSocket,
-    ACTcpStreamServerListeningErrorBind,
-    ACTcpStreamServerListeningErrorListen
-} ACTcpStreamServerListening;
++ (instancetype)defaultTcpStream
+{
+    static ACTcpStream *_singleton = nil;
+    static dispatch_once_t onceToken;
+    
+    dispatch_once(&onceToken, ^{
+        _singleton = [[self alloc] init];
+    });
+    
+    return _singleton;
+}
 
-@class ACTcpStreamServer;
-
-@protocol ACTcpStreamServerDelegate <NSObject>
-
-- (void)tcpStreamServer:(ACTcpStreamServer *)server
-     receivedConnection:(ACTcpStreamConnection *)connection;
-
-@end
-
-@interface ACTcpStreamServer : NSObject
-
-@property (nonatomic, readonly) int listeningPort;
-
-@property (nonatomic, weak) id <ACTcpStreamServerDelegate, NSObject> delegate;
-
-- (instancetype)initWithListeningPort:(int)port;
-
-/*!
- @brief
- @return 0 on success and ACTcpStreamServerListening on failure.
- */
-- (ACTcpStreamServerListening)startListening;
+- (id)init
+{
+    self = [super init];
+    if (self)
+    {
+#ifdef DEBUG
+        _logLevel = ACTcpStreamLogLevelDebug;
+#else
+        _logLevel = ACTcpStreamLogLevelError;
+#endif
+    }
+    return self;
+}
 
 @end
