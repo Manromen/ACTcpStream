@@ -7,43 +7,59 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		F874CA971AF0393300B61687 /* ACTcpStream.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = F874CA961AF0393300B61687 /* ACTcpStream.h */; };
-		F874CA991AF0393300B61687 /* ACTcpStream.m in Sources */ = {isa = PBXBuildFile; fileRef = F874CA981AF0393300B61687 /* ACTcpStream.m */; };
-		F874CA9F1AF0393300B61687 /* libACTcpStream.a in Frameworks */ = {isa = PBXBuildFile; fileRef = F874CA931AF0393300B61687 /* libACTcpStream.a */; };
+		F81C94AD1AF0B20E008987F6 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = F81C94AC1AF0B20E008987F6 /* main.m */; };
+		F81C94CC1AF0DE91008987F6 /* ACTcpStreamClient.m in Sources */ = {isa = PBXBuildFile; fileRef = F874CA981AF0393300B61687 /* ACTcpStreamClient.m */; };
+		F81C94CD1AF0DE94008987F6 /* ACTcpStreamClient.m in Sources */ = {isa = PBXBuildFile; fileRef = F874CA981AF0393300B61687 /* ACTcpStreamClient.m */; };
+		F874CA971AF0393300B61687 /* ACTcpStreamClient.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = F874CA961AF0393300B61687 /* ACTcpStreamClient.h */; };
+		F874CA991AF0393300B61687 /* ACTcpStreamClient.m in Sources */ = {isa = PBXBuildFile; fileRef = F874CA981AF0393300B61687 /* ACTcpStreamClient.m */; };
 /* End PBXBuildFile section */
 
-/* Begin PBXContainerItemProxy section */
-		F874CAA01AF0393300B61687 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = F874CA8B1AF0393300B61687 /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = F874CA921AF0393300B61687;
-			remoteInfo = ACTcpStream;
-		};
-/* End PBXContainerItemProxy section */
-
 /* Begin PBXCopyFilesBuildPhase section */
+		F81C94A81AF0B20E008987F6 /* CopyFiles */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = /usr/share/man/man1/;
+			dstSubfolderSpec = 0;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 1;
+		};
 		F874CA911AF0393300B61687 /* CopyFiles */ = {
 			isa = PBXCopyFilesBuildPhase;
 			buildActionMask = 2147483647;
 			dstPath = "include/$(PRODUCT_NAME)";
 			dstSubfolderSpec = 16;
 			files = (
-				F874CA971AF0393300B61687 /* ACTcpStream.h in CopyFiles */,
+				F874CA971AF0393300B61687 /* ACTcpStreamClient.h in CopyFiles */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		F81C94AA1AF0B20E008987F6 /* Example */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = Example; sourceTree = BUILT_PRODUCTS_DIR; };
+		F81C94AC1AF0B20E008987F6 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		F81C94B51AF0C15E008987F6 /* libACTcpStream.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libACTcpStream.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		F874CA931AF0393300B61687 /* libACTcpStream.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libACTcpStream.a; sourceTree = BUILT_PRODUCTS_DIR; };
-		F874CA961AF0393300B61687 /* ACTcpStream.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ACTcpStream.h; sourceTree = "<group>"; };
-		F874CA981AF0393300B61687 /* ACTcpStream.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ACTcpStream.m; sourceTree = "<group>"; };
-		F874CA9E1AF0393300B61687 /* ACTcpStreamTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ACTcpStreamTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		F874CAA41AF0393300B61687 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		F874CA961AF0393300B61687 /* ACTcpStreamClient.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ACTcpStreamClient.h; sourceTree = "<group>"; };
+		F874CA981AF0393300B61687 /* ACTcpStreamClient.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ACTcpStreamClient.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
+		F81C94A71AF0B20E008987F6 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		F81C94B21AF0C15E008987F6 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		F874CA901AF0393300B61687 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -51,22 +67,22 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		F874CA9B1AF0393300B61687 /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				F874CA9F1AF0393300B61687 /* libACTcpStream.a in Frameworks */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		F81C94AB1AF0B20E008987F6 /* Example */ = {
+			isa = PBXGroup;
+			children = (
+				F81C94AC1AF0B20E008987F6 /* main.m */,
+			);
+			path = Example;
+			sourceTree = "<group>";
+		};
 		F874CA8A1AF0393300B61687 = {
 			isa = PBXGroup;
 			children = (
 				F874CA951AF0393300B61687 /* ACTcpStream */,
-				F874CAA21AF0393300B61687 /* ACTcpStreamTests */,
+				F81C94AB1AF0B20E008987F6 /* Example */,
 				F874CA941AF0393300B61687 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -75,7 +91,8 @@
 			isa = PBXGroup;
 			children = (
 				F874CA931AF0393300B61687 /* libACTcpStream.a */,
-				F874CA9E1AF0393300B61687 /* ACTcpStreamTests.xctest */,
+				F81C94AA1AF0B20E008987F6 /* Example */,
+				F81C94B51AF0C15E008987F6 /* libACTcpStream.a */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -83,34 +100,62 @@
 		F874CA951AF0393300B61687 /* ACTcpStream */ = {
 			isa = PBXGroup;
 			children = (
-				F874CA961AF0393300B61687 /* ACTcpStream.h */,
-				F874CA981AF0393300B61687 /* ACTcpStream.m */,
+				F874CA961AF0393300B61687 /* ACTcpStreamClient.h */,
+				F874CA981AF0393300B61687 /* ACTcpStreamClient.m */,
 			);
 			path = ACTcpStream;
 			sourceTree = "<group>";
 		};
-		F874CAA21AF0393300B61687 /* ACTcpStreamTests */ = {
-			isa = PBXGroup;
-			children = (
-				F874CAA31AF0393300B61687 /* Supporting Files */,
-			);
-			path = ACTcpStreamTests;
-			sourceTree = "<group>";
-		};
-		F874CAA31AF0393300B61687 /* Supporting Files */ = {
-			isa = PBXGroup;
-			children = (
-				F874CAA41AF0393300B61687 /* Info.plist */,
-			);
-			name = "Supporting Files";
-			sourceTree = "<group>";
-		};
 /* End PBXGroup section */
 
+/* Begin PBXHeadersBuildPhase section */
+		F81C94B31AF0C15E008987F6 /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXHeadersBuildPhase section */
+
 /* Begin PBXNativeTarget section */
-		F874CA921AF0393300B61687 /* ACTcpStream */ = {
+		F81C94A91AF0B20E008987F6 /* Example */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = F874CAA71AF0393300B61687 /* Build configuration list for PBXNativeTarget "ACTcpStream" */;
+			buildConfigurationList = F81C94B01AF0B20E008987F6 /* Build configuration list for PBXNativeTarget "Example" */;
+			buildPhases = (
+				F81C94A61AF0B20E008987F6 /* Sources */,
+				F81C94A71AF0B20E008987F6 /* Frameworks */,
+				F81C94A81AF0B20E008987F6 /* CopyFiles */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = Example;
+			productName = Example;
+			productReference = F81C94AA1AF0B20E008987F6 /* Example */;
+			productType = "com.apple.product-type.tool";
+		};
+		F81C94B41AF0C15E008987F6 /* ACTcpStream-OSX */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = F81C94C61AF0C15E008987F6 /* Build configuration list for PBXNativeTarget "ACTcpStream-OSX" */;
+			buildPhases = (
+				F81C94B11AF0C15E008987F6 /* Sources */,
+				F81C94B21AF0C15E008987F6 /* Frameworks */,
+				F81C94B31AF0C15E008987F6 /* Headers */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "ACTcpStream-OSX";
+			productName = ACTcpStream;
+			productReference = F81C94B51AF0C15E008987F6 /* libACTcpStream.a */;
+			productType = "com.apple.product-type.library.static";
+		};
+		F874CA921AF0393300B61687 /* ACTcpStream-iOS */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = F874CAA71AF0393300B61687 /* Build configuration list for PBXNativeTarget "ACTcpStream-iOS" */;
 			buildPhases = (
 				F874CA8F1AF0393300B61687 /* Sources */,
 				F874CA901AF0393300B61687 /* Frameworks */,
@@ -120,28 +165,10 @@
 			);
 			dependencies = (
 			);
-			name = ACTcpStream;
+			name = "ACTcpStream-iOS";
 			productName = ACTcpStream;
 			productReference = F874CA931AF0393300B61687 /* libACTcpStream.a */;
 			productType = "com.apple.product-type.library.static";
-		};
-		F874CA9D1AF0393300B61687 /* ACTcpStreamTests */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = F874CAAA1AF0393300B61687 /* Build configuration list for PBXNativeTarget "ACTcpStreamTests" */;
-			buildPhases = (
-				F874CA9A1AF0393300B61687 /* Sources */,
-				F874CA9B1AF0393300B61687 /* Frameworks */,
-				F874CA9C1AF0393300B61687 /* Resources */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-				F874CAA11AF0393300B61687 /* PBXTargetDependency */,
-			);
-			name = ACTcpStreamTests;
-			productName = ACTcpStreamTests;
-			productReference = F874CA9E1AF0393300B61687 /* ACTcpStreamTests.xctest */;
-			productType = "com.apple.product-type.bundle.unit-test";
 		};
 /* End PBXNativeTarget section */
 
@@ -152,10 +179,13 @@
 				LastUpgradeCheck = 0630;
 				ORGANIZATIONNAME = "appcom interactive GmbH";
 				TargetAttributes = {
-					F874CA921AF0393300B61687 = {
+					F81C94A91AF0B20E008987F6 = {
 						CreatedOnToolsVersion = 6.3.1;
 					};
-					F874CA9D1AF0393300B61687 = {
+					F81C94B41AF0C15E008987F6 = {
+						CreatedOnToolsVersion = 6.3.1;
+					};
+					F874CA921AF0393300B61687 = {
 						CreatedOnToolsVersion = 6.3.1;
 					};
 				};
@@ -172,49 +202,91 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				F874CA921AF0393300B61687 /* ACTcpStream */,
-				F874CA9D1AF0393300B61687 /* ACTcpStreamTests */,
+				F874CA921AF0393300B61687 /* ACTcpStream-iOS */,
+				F81C94B41AF0C15E008987F6 /* ACTcpStream-OSX */,
+				F81C94A91AF0B20E008987F6 /* Example */,
 			);
 		};
 /* End PBXProject section */
 
-/* Begin PBXResourcesBuildPhase section */
-		F874CA9C1AF0393300B61687 /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
+/* Begin PBXSourcesBuildPhase section */
+		F81C94A61AF0B20E008987F6 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F81C94AD1AF0B20E008987F6 /* main.m in Sources */,
+				F81C94CD1AF0DE94008987F6 /* ACTcpStreamClient.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-/* End PBXResourcesBuildPhase section */
-
-/* Begin PBXSourcesBuildPhase section */
+		F81C94B11AF0C15E008987F6 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				F81C94CC1AF0DE91008987F6 /* ACTcpStreamClient.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		F874CA8F1AF0393300B61687 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				F874CA991AF0393300B61687 /* ACTcpStream.m in Sources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		F874CA9A1AF0393300B61687 /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
+				F874CA991AF0393300B61687 /* ACTcpStreamClient.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
 
-/* Begin PBXTargetDependency section */
-		F874CAA11AF0393300B61687 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = F874CA921AF0393300B61687 /* ACTcpStream */;
-			targetProxy = F874CAA01AF0393300B61687 /* PBXContainerItemProxy */;
-		};
-/* End PBXTargetDependency section */
-
 /* Begin XCBuildConfiguration section */
+		F81C94AE1AF0B20E008987F6 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CONFIGURATION_TEMP_DIR = "$(PROJECT_TEMP_DIR)/$(CONFIGURATION)$(EFFECTIVE_PLATFORM_NAME)";
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				MACOSX_DEPLOYMENT_TARGET = 10.10;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = macosx;
+			};
+			name = Debug;
+		};
+		F81C94AF1AF0B20E008987F6 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				MACOSX_DEPLOYMENT_TARGET = 10.10;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = macosx;
+			};
+			name = Release;
+		};
+		F81C94C71AF0C15E008987F6 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				EXECUTABLE_PREFIX = lib;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				MACOSX_DEPLOYMENT_TARGET = 10.10;
+				PRODUCT_NAME = ACTcpStream;
+				SDKROOT = macosx;
+			};
+			name = Debug;
+		};
+		F81C94C81AF0C15E008987F6 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				EXECUTABLE_PREFIX = lib;
+				MACOSX_DEPLOYMENT_TARGET = 10.10;
+				PRODUCT_NAME = ACTcpStream;
+				SDKROOT = macosx;
+			};
+			name = Release;
+		};
 		F874CAA51AF0393300B61687 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -297,7 +369,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				OTHER_LDFLAGS = "-ObjC";
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = ACTcpStream;
 				SKIP_INSTALL = YES;
 			};
 			name = Debug;
@@ -306,46 +378,30 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				OTHER_LDFLAGS = "-ObjC";
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = ACTcpStream;
 				SKIP_INSTALL = YES;
-			};
-			name = Release;
-		};
-		F874CAAB1AF0393300B61687 /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(SDKROOT)/Developer/Library/Frameworks",
-					"$(inherited)",
-				);
-				GCC_PREPROCESSOR_DEFINITIONS = (
-					"DEBUG=1",
-					"$(inherited)",
-				);
-				INFOPLIST_FILE = ACTcpStreamTests/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				PRODUCT_NAME = "$(TARGET_NAME)";
-			};
-			name = Debug;
-		};
-		F874CAAC1AF0393300B61687 /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(SDKROOT)/Developer/Library/Frameworks",
-					"$(inherited)",
-				);
-				INFOPLIST_FILE = ACTcpStreamTests/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = Release;
 		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
+		F81C94B01AF0B20E008987F6 /* Build configuration list for PBXNativeTarget "Example" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				F81C94AE1AF0B20E008987F6 /* Debug */,
+				F81C94AF1AF0B20E008987F6 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+		F81C94C61AF0C15E008987F6 /* Build configuration list for PBXNativeTarget "ACTcpStream-OSX" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				F81C94C71AF0C15E008987F6 /* Debug */,
+				F81C94C81AF0C15E008987F6 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
 		F874CA8E1AF0393300B61687 /* Build configuration list for PBXProject "ACTcpStream" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
@@ -355,21 +411,14 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		F874CAA71AF0393300B61687 /* Build configuration list for PBXNativeTarget "ACTcpStream" */ = {
+		F874CAA71AF0393300B61687 /* Build configuration list for PBXNativeTarget "ACTcpStream-iOS" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				F874CAA81AF0393300B61687 /* Debug */,
 				F874CAA91AF0393300B61687 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
-		};
-		F874CAAA1AF0393300B61687 /* Build configuration list for PBXNativeTarget "ACTcpStreamTests" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				F874CAAB1AF0393300B61687 /* Debug */,
-				F874CAAC1AF0393300B61687 /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
